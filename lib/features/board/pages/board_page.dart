@@ -26,7 +26,7 @@ class _BoardPageState extends State<BoardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Minefield'),
+        title: const Text('Campo Minado'),
       ),
       body: BoardWidget(
         board: board,
