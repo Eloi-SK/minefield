@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../models/board_model.dart';
@@ -16,15 +18,27 @@ class BoardWidget extends StatelessWidget {
     required this.onLongPress
   }) : super(key: key);
 
+  double get fontSize {
+    if (board.columns == 10) {
+      return 24;
+    } else if (board.columns == 15) {
+      return 20;
+    } else {
+      return 16;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: board.columns,
       children: board.fields.map((field) => FieldWidget(
         field: field,
+        fontSize: fontSize,
         onTap: onTap,
         onLongPress: onLongPress,
       )).toList(),
     );
   }
 }
+

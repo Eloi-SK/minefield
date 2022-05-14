@@ -4,12 +4,14 @@ import '../../models/field_model.dart';
 
 class FieldWidget extends StatelessWidget {
   final Field field;
+  final double fontSize;
   final void Function(Field) onTap;
   final void Function(Field) onLongPress;
 
   const FieldWidget({
     Key? key,
     required this.field,
+    required this.fontSize,
     required this.onTap,
     required this.onLongPress
   }) : super(key: key);
@@ -52,8 +54,8 @@ class FieldWidget extends StatelessWidget {
         child: Center(
           child: Text(
             _getText,
-            style: const TextStyle(
-              fontSize: 24,
+            style: TextStyle(
+              fontSize: fontSize,
               fontWeight: FontWeight.bold,
             ),
           )
