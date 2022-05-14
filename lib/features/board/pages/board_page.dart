@@ -23,7 +23,6 @@ class BoardPage extends StatefulWidget {
 
 class _BoardPageState extends State<BoardPage> {
   bool? venceu;
-  
   Board? board;
 
   @override
@@ -41,7 +40,9 @@ class _BoardPageState extends State<BoardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Campo Minado'),
+        title: Text(
+          'Campo Minado - ${widget.mines} minas',  
+        ),
       ),
       body: BoardWidget(
         board: board!,
