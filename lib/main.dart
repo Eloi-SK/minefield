@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/board/pages/board_page.dart';
+import 'features/menu/pages/menu_page.dart';
 
 void main() {
   runApp(const MineFieldApp());
@@ -14,9 +14,9 @@ class MineFieldApp extends StatelessWidget {
     return MaterialApp(
       title: 'Campo Minado',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const BoardPage(),
+      home: const MenuPage(),
     );
   }
 }

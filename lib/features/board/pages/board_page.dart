@@ -6,7 +6,16 @@ import '../models/field_model.dart';
 import 'components/board_widget.dart';
 
 class BoardPage extends StatefulWidget {
-  const BoardPage({Key? key}) : super(key: key);
+  final int rows;
+  final int columns;
+  final int mines;
+
+  const BoardPage({
+    Key? key,
+    required this.rows,
+    required this.columns,
+    required this.mines
+  }) : super(key: key);
 
   @override
   State<BoardPage> createState() => _BoardPageState();
@@ -15,12 +24,18 @@ class BoardPage extends StatefulWidget {
 class _BoardPageState extends State<BoardPage> {
   bool? venceu;
   
-  Board board = Board(
-      rows: 10,
-      columns: 10,
-      mines: 8,
+  Board? board;
+
+  @override
+  void initState() {
+    board = Board(
+      rows: widget.rows,
+      columns: widget.columns,
+      mines: widget.mines,
     );
 
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +44,7 @@ class _BoardPageState extends State<BoardPage> {
         title: const Text('Campo Minado'),
       ),
       body: BoardWidget(
-        board: board,
+        board: board!,
         onTap: onTap,
         onLongPress: onLongPress,
       )
@@ -46,11 +61,11 @@ class _BoardPageState extends State<BoardPage> {
 
       if (field.isExploded) {
         venceu = false;
-        board.revealMines();
+        board!.revealMines();
         showFinishDialog('Tente novamente', 'Você perdeu!');
       }
 
-      if(board.isResolved) {
+      if(board!.isResolved) {
         venceu = true;
         showFinishDialog('Parabéns', 'Você venceu!');	
       }
@@ -65,7 +80,7 @@ class _BoardPageState extends State<BoardPage> {
     setState(() {
       field.toggleFlag();
 
-      if (board.isResolved) {
+      if (board!.isResolved) {
         venceu = true;
         showFinishDialog('Parabéns', 'Você venceu!');	
       }
@@ -75,7 +90,7 @@ class _BoardPageState extends State<BoardPage> {
   void restart() {
     setState(() {
       venceu = null;
-      board.restart();
+      board!.restart();
     });
   }
 
