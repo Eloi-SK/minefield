@@ -47,12 +47,12 @@ class _BoardPageState extends State<BoardPage> {
       if (field.isExploded) {
         venceu = false;
         board.revealMines();
-        print('Você perdeu!');
+        showFinishDialog('Tente novamente', 'Você perdeu!');
       }
 
       if(board.isResolved) {
         venceu = true;
-        print('Você venceu!');
+        showFinishDialog('Parabéns', 'Você venceu!');	
       }
     });
   }
@@ -67,8 +67,36 @@ class _BoardPageState extends State<BoardPage> {
 
       if (board.isResolved) {
         venceu = true;
-        print('Você venceu!');
+        showFinishDialog('Parabéns', 'Você venceu!');	
       }
     });
+  }
+
+  void restart() {
+    setState(() {
+      venceu = null;
+      board.restart();
+    });
+  }
+
+  Future<void> showFinishDialog(String title, String message) async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Reiniciar'),
+              onPressed: () {
+                restart();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
