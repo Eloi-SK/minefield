@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../board/models/difficulty_model.dart';
 import '../../board/pages/board_page.dart';
 
 class MenuPage extends StatefulWidget {
@@ -12,6 +13,12 @@ class MenuPage extends StatefulWidget {
 class _MenuPageState extends State<MenuPage> {
   bool shouldShowDifficultyButtons = false;
 
+  final diffcultyList = [
+    Difficulty.easy(),
+    Difficulty.medium(),
+    Difficulty.hard(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +28,8 @@ class _MenuPageState extends State<MenuPage> {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Center(
-        child: showButtons(),
-      ),
+          child: showButtons(),
+        ),
       ),
     );
   }
@@ -48,11 +55,11 @@ class _MenuPageState extends State<MenuPage> {
             fontSize: 18,
           )
         ),
-      onPressed: () {
-        setState(() {
-          shouldShowDifficultyButtons = true;
-        });
-      },
+        onPressed: () {
+          setState(() {
+            shouldShowDifficultyButtons = true;
+          });
+        },
       ),
     );
   }
@@ -61,51 +68,7 @@ class _MenuPageState extends State<MenuPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        ElevatedButton(
-          child: const Text('Fácil'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const BoardPage(
-                  rows: 10,
-                  columns: 10,
-                  mines: 5,
-                ),
-              ),
-            );
-          },
-        ),
-        ElevatedButton(
-          child: const Text('Médio'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const BoardPage(
-                  rows: 15,
-                  columns: 15,
-                  mines: 20,
-                ),
-              ),
-            );
-          },
-        ),
-        ElevatedButton(
-          child: const Text('Difícil'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const BoardPage(
-                  rows: 20,
-                  columns: 20,
-                  mines: 40,
-                ),
-              ),
-            );
-          },
-        ),
+        ...diffcultyList.map(createDifficultyButton),
         ElevatedButton(
           child: const Text('Voltar'),
           onPressed: () {
@@ -115,6 +78,24 @@ class _MenuPageState extends State<MenuPage> {
           },
         ),
       ],
+    );
+  }
+
+  ElevatedButton createDifficultyButton(Difficulty difficulty) {
+    return ElevatedButton(
+      child: Text(difficulty.name),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BoardPage(
+              rows: difficulty.rows,
+              columns: difficulty.columns,
+              mines: difficulty.mines,
+            ),
+          ),
+        );
+      },
     );
   }
 }
