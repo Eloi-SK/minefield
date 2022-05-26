@@ -18,8 +18,11 @@ class _MenuPageState extends State<MenuPage> {
       appBar: AppBar(
         title: const Text('Campo Minado'),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Center(
         child: showButtons(),
+      ),
       ),
     );
   }
