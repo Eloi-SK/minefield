@@ -46,7 +46,7 @@ class _MenuPageState extends State<MenuPage> {
   }
 
   Widget showStartButton() {
-    return Container(
+    return SizedBox(
       width: double.maxFinite,
       child: ElevatedButton(
         child: const Text(
@@ -69,33 +69,39 @@ class _MenuPageState extends State<MenuPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         ...diffcultyList.map(createDifficultyButton),
-        ElevatedButton(
-          child: const Text('Voltar'),
-          onPressed: () {
-            setState(() {
-              shouldShowDifficultyButtons = false;
-            });
-          },
+        SizedBox(
+          width: double.maxFinite,
+          child: ElevatedButton(
+            child: const Text('Voltar'),
+            onPressed: () {
+              setState(() {
+                shouldShowDifficultyButtons = false;
+              });
+            },
+          ),
         ),
       ],
     );
   }
 
-  ElevatedButton createDifficultyButton(Difficulty difficulty) {
-    return ElevatedButton(
-      child: Text(difficulty.name),
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BoardPage(
-              rows: difficulty.rows,
-              columns: difficulty.columns,
-              mines: difficulty.mines,
+  Widget createDifficultyButton(Difficulty difficulty) {
+    return SizedBox(
+      width: double.maxFinite,
+      child: ElevatedButton(
+        child: Text(difficulty.name),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BoardPage(
+                rows: difficulty.rows,
+                columns: difficulty.columns,
+                mines: difficulty.mines,
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
