@@ -39,13 +39,21 @@ class _MenuPageState extends State<MenuPage> {
   }
 
   Widget showStartButton() {
-    return ElevatedButton(
-      child: const Text('Iniciar'),
+    return Container(
+      width: double.maxFinite,
+      child: ElevatedButton(
+        child: const Text(
+          'Iniciar',
+          style: TextStyle(
+            fontSize: 18,
+          )
+        ),
       onPressed: () {
         setState(() {
           shouldShowDifficultyButtons = true;
         });
       },
+      ),
     );
   }
 
