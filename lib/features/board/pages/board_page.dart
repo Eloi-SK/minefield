@@ -48,7 +48,21 @@ class _BoardPageState extends State<BoardPage> {
         board: board!,
         onTap: onTap,
         onLongPress: onLongPress,
-      )
+      ),
+      bottomNavigationBar: const SizedBox(
+          width: double.maxFinite,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+            'Desenvolvido por Eloi Matos',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+      ),
     );
   }
 

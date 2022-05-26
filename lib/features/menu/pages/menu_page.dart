@@ -31,6 +31,20 @@ class _MenuPageState extends State<MenuPage> {
           child: showButtons(),
         ),
       ),
+      bottomNavigationBar: const SizedBox(
+          width: double.maxFinite,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+            'Desenvolvido por Eloi Matos',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+      ),
     );
   }
 
