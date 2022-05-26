@@ -86,7 +86,12 @@ class _MenuPageState extends State<MenuPage> {
         SizedBox(
           width: double.maxFinite,
           child: ElevatedButton(
-            child: const Text('Voltar'),
+            child: const Text(
+              'Voltar',
+              style: TextStyle(
+                fontSize: 18,
+              )
+            ),
             onPressed: () {
               setState(() {
                 shouldShowDifficultyButtons = false;
@@ -102,7 +107,12 @@ class _MenuPageState extends State<MenuPage> {
     return SizedBox(
       width: double.maxFinite,
       child: ElevatedButton(
-        child: Text(difficulty.name),
+        child: Text(
+          difficulty.name,
+          style: const TextStyle(
+            fontSize: 18,
+          )
+        ),
         onPressed: () {
           Navigator.push(
             context,
